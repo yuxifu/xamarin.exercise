@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectGuid>{298DB29F-049C-4944-B3BD-FF7BD589C51B}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Phoneword_iOS</RootNamespace>
+    <AssemblyName>Phoneword_iOS</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchFastDev>true</MtouchFastDev>
+    <IOSDebuggerPort>40040</IOSDebuggerPort>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <IOSDebuggerPort>15503</IOSDebuggerPort>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Contents.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
+    <InterfaceDefinition Include="Main.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="ViewController.cs" />
+    <Compile Include="ViewController.designer.cs">
+      <DependentUpon>ViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PhoneTranslator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\.DS_Store" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\Android\.DS_Store" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\Android\drawable\.DS_Store" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\Android\drawable\Icon.png" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\Android\drawable-hdpi\.DS_Store" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\Android\drawable-hdpi\Icon.png" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\Android\drawable-ldpi\.DS_Store" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\Android\drawable-ldpi\Icon.png" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\Android\drawable-mdpi\.DS_Store" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\Android\drawable-mdpi\Icon.png" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\Android\drawable-xhdpi\.DS_Store" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\Android\drawable-xhdpi\Icon.png" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\Android\drawable-xxhdpi\.DS_Store" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\Android\drawable-xxhdpi\Icon.png" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\iOS\.DS_Store" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\iOS\Default-568h%402x.png" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\iOS\Default.png" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\iOS\Default%402x.png" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\iOS\Icon-60.png" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\iOS\Icon-60%402x.png" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\iOS\Icon-60%403x.png" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\iOS\Icon-72.png" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\iOS\Icon-72%402x.png" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\iOS\Icon-76.png" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\iOS\Icon-76%402x.png" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\iOS\Icon-Small-40%402x.png" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\iOS\Icon-Small-50.png" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\iOS\Icon-Small-50%402x.png" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\iOS\Icon-Small.png" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\iOS\Icon-Small%402x.png" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\iOS\Icon-Small%403x.png" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\iOS\Icon-Spotlight-40.png" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\iOS\Icon-Spotlight-40%402x.png" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\iOS\Icon-Spotlight-40%403x.png" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\iOS\Icon.png" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\iOS\Icon%402x.png" />
+    <BundleResource Include="Resources\Xamarin App Icons and Launch Images\iOS\Icon%403x.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+</Project>
