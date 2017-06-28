@@ -19,7 +19,7 @@ namespace FragmentSample
 		private int _currentPlayId;
 		private bool _isDualPane;
 
-		public override void OnActivityCreated(Bundle savedInstanceState)
+        public override void OnActivityCreated(Bundle savedInstanceState)
 		{
 			base.OnActivityCreated(savedInstanceState);
 
