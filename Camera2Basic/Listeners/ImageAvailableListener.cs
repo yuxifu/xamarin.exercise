@@ -1,5 +1,6 @@
 
 using Android.Media;
+using Android.Util;
 using Java.IO;
 using Java.Lang;
 using Java.Nio;
@@ -8,11 +9,21 @@ namespace Camera2Basic.Listeners
 {
     public class ImageAvailableListener : Java.Lang.Object, ImageReader.IOnImageAvailableListener
     {
-        public File File { get; set; }
+        private static readonly string TAG = "ImageAvailableListener";
+
+		int count = 1;
+		public File File { get; set; } //File is the folder to save
         public Camera2BasicFragment Owner { get; set; }
         public void OnImageAvailable(ImageReader reader)
         {
-            Owner.mBackgroundHandler.Post(new ImageSaver(reader.AcquireNextImage(), File));
+            //get a new file name
+            var fileToUse = new File(File, count + ".jpg");
+            while (fileToUse.Exists())
+			{
+				count++;
+                fileToUse = new File(File, count + ".jpg");
+			} 
+            Owner.mBackgroundHandler.Post(new ImageSaver(reader.AcquireNextImage(), fileToUse, Owner));
         }
 
         // Saves a JPEG {@link Image} into the specified {@link File}.
@@ -24,10 +35,13 @@ namespace Camera2Basic.Listeners
             // The file we save the image into.
             private File mFile;
 
-            public ImageSaver(Image image, File file)
+            public Camera2BasicFragment Owner { get; set; }
+
+            public ImageSaver(Image image, File file, Camera2BasicFragment owner)
             {
                 mImage = image;
                 mFile = file;
+                Owner = owner;
             }
 
             public void Run()
@@ -40,7 +54,9 @@ namespace Camera2Basic.Listeners
                     try
                     {
                         output.Write(bytes);
-                    }
+						Owner.ShowToast("Saved: " + mFile);
+						Log.Debug(TAG, Owner.mFile.ToString());
+					}
                     catch (IOException e)
                     {
                         e.PrintStackTrace();

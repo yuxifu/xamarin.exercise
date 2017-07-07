@@ -17,8 +17,8 @@ namespace Camera2Basic.Listeners
 
         public override void OnCaptureCompleted(CameraCaptureSession session, CaptureRequest request, TotalCaptureResult result)
         {
-            Owner.ShowToast("Saved: " + Owner.mFile);
-            Log.Debug(TAG, Owner.mFile.ToString());
+            //Owner.ShowToast("Saved at: " + Owner.mFile);
+            //Log.Debug(TAG, Owner.mFile.ToString());
             Owner.UnlockFocus();
         }
     }

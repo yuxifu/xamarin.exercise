@@ -27,7 +27,7 @@ namespace Camera2Basic
 {
     public class Camera2BasicFragment : Fragment, View.IOnClickListener, FragmentCompat.IOnRequestPermissionsResultCallback
     {
-        private static readonly SparseIntArray ORIENTATIONS = new SparseIntArray();
+        private static readonly SparseIntArray ORIENTATIONS = new SparseIntArray(); //int-int mapping, faster than HashMap
         public static readonly int REQUEST_CAMERA_PERMISSION = 1;
         private static readonly string FRAGMENT_DIALOG = "dialog";
 
@@ -85,7 +85,7 @@ namespace Camera2Basic
         // An {@link ImageReader} that handles still image capture.
         private ImageReader mImageReader;
 
-        // This is the output file for our picture.
+        // This is the output file location for our picture.
         public File mFile;
 
         // This a callback object for the {@link ImageReader}. "onImageAvailable" will be called when a
@@ -195,6 +195,11 @@ namespace Camera2Basic
             mStateCallback = new CameraStateListener() { owner = this };
             mSurfaceTextureListener = new Camera2BasicSurfaceTextureListener(this);
 
+            mCaptureCallback = new CameraCaptureListener()
+            {
+                Owner = this
+            };
+
             // fill ORIENTATIONS list
             ORIENTATIONS.Append((int)SurfaceOrientation.Rotation0, 90);
             ORIENTATIONS.Append((int)SurfaceOrientation.Rotation90, 0);
@@ -217,7 +222,25 @@ namespace Camera2Basic
         public override void OnActivityCreated(Bundle savedInstanceState)
         {
             base.OnActivityCreated(savedInstanceState);
-            mFile = new File(Activity.GetExternalFilesDir(null), "pic.jpg");
+
+			//save to user album
+			//mFile = new File(Activity.GetExternalFilesDir(null), "pic.jpg");
+
+			//In order to use a new file name for every picture taken, store the location only in mFile
+			//the actual filoe name will be generated in the mOnImageAvailableListener
+			mFile = new File(Android.OS.Environment.GetExternalStoragePublicDirectory(
+                Android.OS.Environment.DirectoryPictures), "Camera2Basic");//Activity.Title);
+            if (!mFile.Exists())
+            {
+                mFile.Mkdirs();
+            }
+
+            //
+            mOnImageAvailableListener = new ImageAvailableListener()
+            {
+                Owner = this,
+                File = mFile
+            };
         }
 
         public override void OnResume()
@@ -392,7 +415,7 @@ namespace Camera2Basic
             {
                 e.PrintStackTrace();
             }
-            catch (NullPointerException e)
+            catch (NullPointerException)
             {
                 // Currently an NPE is thrown when the Camera2API is used but not supported on the
                 // device this code runs.
